@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>Wait, what was I supposed to do again</title>
+		<style>
+			body {
+				text-align: justify;
+				font-family: sans-serif;
+				font-size: larger;
+				width: 600px;
+				margin: 0 auto;
+			}
+			h1 {
+				text-align: center;
+			}
+			.challenge {
+				margin: 1em;
+			}
+			.challenge:not(:last-child):after {
+				content: "and";
+				display: block;
+				font-style: italic;
+				text-align: center;
+				margin: 1em;
+			}
+			.title {
+				font-weight: bold;
+			}
+			.title:after {
+				content: ":";
+				margin-right: 20px;
+			}
+
+			author {
+				display: block;
+				font-size: small;
+				font-style: italic;
+				text-align: right;
+			}
+			author:before {
+				content: '-';
+				margin-right: 0.5em;
+			}
+			footer {
+				font-size: small;
+				text-align: center;
+				margin-top: 4em;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Your challenge is both...</h1>
+		<div class="challenges">
+		</div>
+		<footer>Refresh to get another...</p>
+		<script>
+			(function() {
+				var CHALLENGES = [
+					["No Bombs", "Don't use bombs", "Psychedelic Eyeball"],
+					["No Gold", "Don't get gold", "Psychedelic Eyeball"],
+					["Eggplant run", "You know what to do", "mossmouth"],
+					["Teleportin'", "As soon as you find a teleporter, preferably as early as possible, as much of your movement as possible has to be by means of teleporting.", "Geemer"],
+					["PETA's employee of the month", "Kill every damsel but the bug, which you must try to rescue. Pugs that accidentally get \"euthanized\" along the way are acceptable losses", "Tengames"],
+					["Say cheese!", "As soon as you see a camera, you must buy/grab it, and take a picture of every new kind of enemy in the game you see. You must bring the camera through every level.", "Suspicious Dish"],
+					["Wait, that was the last LP!", "Once you get the climbing gloves, you're not allowed to use any items (including whip/bombs/rope)", "Suspicious Dish"],
+					["Welcome to the Warp Zone", "Beat the game after heading through the Ice Caves shortcut.", "Suspicious Dish"],
+					["Leaps & Faith", "Never look down. Sacrifice everything sacrificable to Kali each level you find her altar on, to the best of your abilities.", "Archenteron"],
+					["No Dogs, No Mistresses, Only Men", "Sacrifice every Pugsel (or kill in an amusing way if there's no altar), ignore every Damsel, save every Mansel.", "Archenteron"],
+					["Have I mentioned I am heterosexual today?", "Random damsels. Pick a damsel type. You are not allowed to touch the other two for any purpose.", "ZeeToo"],
+					["Sidekick Run", "If you come across a hired hands shop or a secret character, buy or free them. That person is now the hero! As the devoted sidekick, it is your job to keep the hero safe and well armed. Lead him as far as you can!", "ponzicar"],
+					["Please Kali", "Every single alter gets a live sacrifice. If you want to make it harder, require it to be the damsel every time, with other humanoids as bonus fodder if you choose.", "Choco1980"],
+					["Kali, Please!", "Piss Kali Off", "Lizard Wizard"],
+					["Indecision", "Every time you run into a new weapon, you have to swap the one you're currently carrying for it. And since they pretty much are weapons anyway in the previous videos, damsels count as weapons for this challenge. (Retrieving them later for health is allowed).", "sgtsnookums"],
+					["Ethical Run", "Stealing is wrong. Killing is wrong. No stealing, no killing damsels, shopkeepers, or regular humanoid enemies like cavemen or yetis. The undead don't count. Descend into Hell and defeat death itself, earning salvation for mankind.", "I Am Just a Box"],
+				];
+
+				function randomChallenge() {
+					var idx = Math.floor(Math.random() * CHALLENGES.length);
+					return CHALLENGES[idx];
+				}
+
+				function formatChallenge(challenge) {
+					var title = challenge[0];
+					var body = challenge[1];
+					var suggestedBy = challenge[2];
+
+					var elem = document.createElement('div');
+					elem.classList.add('challenge');
+
+					var titleElem = document.createElement('span');
+					titleElem.classList.add('title');
+					titleElem.textContent = title;
+					elem.appendChild(titleElem);
+
+					var bodyElem = document.createElement('span');
+					bodyElem.classList.add('body');
+					bodyElem.textContent = body;
+					elem.appendChild(bodyElem);
+
+					var authorElem = document.createElement('author');
+					authorElem.textContent = suggestedBy;
+					elem.appendChild(authorElem);
+
+					return elem;
+				}
+
+				var challengesContainer = document.querySelector(".challenges");
+				var number = 2;
+				for (var i = 0; i < number; i++) {
+					var challenge = randomChallenge();
+					var challengeElem = formatChallenge(challenge);
+					challengesContainer.appendChild(challengeElem);
+				}
+			})();
+		</script>
+	</body>
+</html>
